@@ -39,11 +39,11 @@ public class Control {
     @Column(name = "sucursal_id")
     private Long sucursalId;
 
-    @Column(name = "fecha_creacion", updatable = false)
-    private LocalDateTime fechaCreacion;
+    @Column(name = "created_at", updatable = false)
+    private LocalDateTime createdAt;
 
     @PrePersist
     protected void onCreate() {
-        this.fechaCreacion = LocalDateTime.now();
+        this.createdAt = LocalDateTime.now();
     }
 }
