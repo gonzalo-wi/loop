@@ -17,7 +17,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table(name = "productos")
+@Table(name = "products")
 @Getter @Setter
 @NoArgsConstructor
 @AllArgsConstructor
@@ -27,19 +27,19 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
-    @Column(name = "orden")
+    @Column(name = "product_order")
     private int order;
     
-    @Column(name = "cod_producto")
+    @Column(name = "cod_product")
     private String codProduct;
     
-    @Column(name = "nombre")
+    @Column(name = "name")
     private String name;
     
-    @Column(name = "paquete")
+    @Column(name = "pack")
     private int pack;
     
-    @Column(name = "retornable")
+    @Column(name = "returnable")
     private boolean returnable;
     
     @ManyToOne
