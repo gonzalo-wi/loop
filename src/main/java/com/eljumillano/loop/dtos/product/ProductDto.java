@@ -35,8 +35,5 @@ public class ProductDto {
 
     private boolean returnable;
 
-    @NotNull(message = "El control es obligatorio")
-    private Long controlId;
-
     private LocalDateTime createdAt;
 }

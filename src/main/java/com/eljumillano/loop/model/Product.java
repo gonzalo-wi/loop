@@ -7,8 +7,6 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -25,26 +23,22 @@ public class Product {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long          id;
     
     @Column(name = "product_order")
-    private int order;
+    private int           order;
     
     @Column(name = "cod_product")
-    private String codProduct;
+    private String        codProduct;
     
     @Column(name = "name")
-    private String name;
+    private String        name;
     
     @Column(name = "pack")
-    private int pack;
+    private int           pack;
     
     @Column(name = "returnable")
-    private boolean returnable;
-    
-    @ManyToOne
-    @JoinColumn(name = "control_id")
-    private Control control;
+    private boolean       returnable;
 
     @Column(name = "created_at", updatable = false)
     private LocalDateTime createdAt;

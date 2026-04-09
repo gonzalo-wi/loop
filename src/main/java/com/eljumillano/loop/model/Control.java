@@ -3,8 +3,13 @@ package com.eljumillano.loop.model;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import com.eljumillano.loop.model.enums.TypeControl;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -25,22 +30,26 @@ public class Control {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;    
+    private Long                 id;    
     
     @Column(name = "delivery_id")
-    private Long deliveryId;
+    private Long                 deliveryId;
     
     @Column(name = "supervisor_id")
-    private Long supervisorId;
+    private Long                 supervisorId;
     
-    @OneToMany(mappedBy = "control")
-    private List<Product> supervisorProducts;
+    @OneToMany(mappedBy = "control", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<ControlProduct> products;
     
     @Column(name = "sucursal_id")
-    private Long sucursalId;
+    private Long                 sucursalId;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "type_control", nullable = false)
+    private TypeControl          typeControl;
 
     @Column(name = "created_at", updatable = false)
-    private LocalDateTime createdAt;
+    private LocalDateTime        createdAt;
 
     @PrePersist
     protected void onCreate() {
