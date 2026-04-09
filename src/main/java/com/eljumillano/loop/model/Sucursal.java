@@ -1,18 +1,14 @@
 package com.eljumillano.loop.model;
 
 import java.time.LocalDateTime;
-
-import com.eljumillano.loop.model.enums.Role;
+import java.util.List;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.PreUpdate;
 import jakarta.persistence.Table;
@@ -22,13 +18,12 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table(name = "users")
+@Table(name = "sucursales")
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class User {
-    
+public class Sucursal {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -36,38 +31,30 @@ public class User {
     @Column(name = "name", nullable = false)
     private String name;
 
-    @Column(name = "last_name", nullable = false)
-    private String lastName;
-    
-    @Column(name = "username", nullable = false, unique = true)
-    private String username;
-    
-    @Column(name = "password", nullable = false)
-    private String password;
-    
-    @Column(name = "pin")
-    private int pin;
-    
-    @ManyToOne
-    @JoinColumn(name = "sucursal_id", nullable = false)
-    private Sucursal sucursal;
-    
-    @Enumerated(EnumType.STRING)
-    @Column(name = "role", nullable = false)
-    private Role role;
+    @Column(name = "code", nullable = false)
+    private String code;
 
-    @Column(name = "delivery_id", nullable = true)
-    private Long deliveryId;
-
-    @Column(name = "active", nullable = false, columnDefinition = "BOOLEAN DEFAULT TRUE")
-    private boolean active;
+    @Column(name = "direccion", nullable = false)
+    private String direccion;
     
+    @Column(name = "localidad", nullable = false)
+    private String localidad;
+
+    @Column(name = "provincia", nullable = false)
+    private String provincia;
+
+    @Column(name = "cuit", nullable = true)
+    private String cuit;
+
+    @OneToMany(mappedBy = "sucursal")
+    private List<User> users;
+
     @Column(name = "created_at", columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     private LocalDateTime createdAt;
 
     @Column(name = "updated_at", columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP")
     private LocalDateTime updatedAt;
-    
+
     @PrePersist
     protected void onCreate() {
         this.createdAt = LocalDateTime.now();
@@ -75,7 +62,7 @@ public class User {
     }
 
     @PreUpdate
-    protected void onUpdate() {
+    protected void onUpdate() { 
         this.updatedAt = LocalDateTime.now();
     }
 }
