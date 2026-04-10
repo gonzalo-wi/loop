@@ -44,6 +44,9 @@ public class Control {
     @Column(name = "sucursal_id")
     private Long                 sucursalId;
 
+    @Column(name = "checked", nullable = false, columnDefinition = "BOOLEAN DEFAULT FALSE")
+    private boolean checked;
+
     @Enumerated(EnumType.STRING)
     @Column(name = "type_control", nullable = false)
     private TypeControl          typeControl;

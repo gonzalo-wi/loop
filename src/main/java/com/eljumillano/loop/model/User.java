@@ -36,13 +36,13 @@ public class User {
     @Column(name = "name", nullable = false)
     private String name;
 
-    @Column(name = "last_name", nullable = false)
+    @Column(name = "last_name", nullable = true)
     private String lastName;
     
-    @Column(name = "username", nullable = false, unique = true)
+    @Column(name = "username", nullable = true, unique = true)
     private String username;
     
-    @Column(name = "password", nullable = false)
+    @Column(name = "password", nullable = true)
     private String password;
     
     @Column(name = "pin")
