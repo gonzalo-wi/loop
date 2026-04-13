@@ -42,11 +42,11 @@ public class User {
     @Column(name = "username", nullable = true, unique = true)
     private String username;
     
-    @Column(name = "password", nullable = true)
+    @Column(name = "password", nullable = true, length = 60)
     private String password;
     
-    @Column(name = "pin")
-    private int pin;
+    @Column(name = "pin", nullable = true)
+    private Integer pin;
     
     @ManyToOne
     @JoinColumn(name = "sucursal_id", nullable = false)
