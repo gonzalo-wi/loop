@@ -21,6 +21,7 @@ public class ProductMapper {
         return dto;
     }
 
+
     public Product toEntity(ProductDto dto) {
         if (dto == null) {
             return null;
@@ -34,6 +35,7 @@ public class ProductMapper {
         return product;
     }
 
+    
     public void updateEntity(ProductDto dto, Product product) {
         if (dto == null || product == null) {
             return;

@@ -5,9 +5,13 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.eljumillano.loop.model.enums.OrderState;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -48,6 +52,10 @@ public class Order {
     @Column(name = "total", precision = 10, scale = 2, nullable = false)
     private BigDecimal total;
 
+    @Enumerated(EnumType.STRING)
+    @Column(name = "state", nullable = false)
+    private OrderState state;
+
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<OrderItem> items = new ArrayList<>();
 
@@ -63,6 +71,9 @@ public class Order {
         this.updatedAt = LocalDateTime.now();
         if (this.orderDate == null) {
             this.orderDate = LocalDateTime.now();
+        }
+        if (this.state == null) {
+            this.state = OrderState.PENDING;
         }
     }
 

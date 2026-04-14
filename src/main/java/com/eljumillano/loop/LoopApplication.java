@@ -1,7 +1,5 @@
 package com.eljumillano.loop;
-
 import java.util.TimeZone;
-
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -12,5 +10,4 @@ public class LoopApplication {
 		TimeZone.setDefault(TimeZone.getTimeZone("UTC"));
 		SpringApplication.run(LoopApplication.class, args);
 	}
-
 }

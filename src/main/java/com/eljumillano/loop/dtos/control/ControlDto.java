@@ -28,6 +28,9 @@ public class ControlDto {
     @NotNull(message = "El tipo de control es obligatorio")
     private TypeControl typeControl;
 
+    private Boolean orderly;
+    private Boolean checked;
+
     @Valid
     private List<ControlProductDto> products;
 

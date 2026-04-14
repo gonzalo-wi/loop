@@ -1,8 +1,8 @@
 package com.eljumillano.loop.service;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.eljumillano.loop.dtos.product.ProductDto;
 import com.eljumillano.loop.exception.ResourceNotFoundException;
 import com.eljumillano.loop.mapper.ProductMapper;
@@ -13,18 +13,19 @@ import com.eljumillano.loop.service.iservice.IProductService;
 @Service
 public class ProductService implements IProductService {
 
-    private final ProductRepository productRepository;
-    private final ProductMapper     productMapper;
+    private static final String MESSAGE_ENTITY_NAME = "Product";
 
-    public ProductService(ProductRepository productRepository, ProductMapper productMapper) {
-        this.productRepository = productRepository;
-        this.productMapper     = productMapper;
-    }
+    @Autowired
+    private  ProductRepository productRepository;
+
+    @Autowired
+    private  ProductMapper     productMapper;
+
 
 
     @Override
     public List<ProductDto> getAllProducts() {
-        return productRepository.findAll()
+        return productRepository.findAllByOrderByOrderAsc()
                 .stream()
                 .map(productMapper::toDto)
                 .toList();
@@ -35,7 +36,7 @@ public class ProductService implements IProductService {
     public ProductDto getProductById(Long id) {
         return productRepository.findById(id)
                 .map(productMapper::toDto)
-                .orElseThrow(() -> new ResourceNotFoundException("Product", id));
+                .orElseThrow(() -> new ResourceNotFoundException(MESSAGE_ENTITY_NAME, id));
     }
 
 
@@ -49,7 +50,7 @@ public class ProductService implements IProductService {
     @Override
     public ProductDto updateProduct(Long id, ProductDto dto) {
         Product product = productRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Product", id));
+                .orElseThrow(() -> new ResourceNotFoundException(MESSAGE_ENTITY_NAME, id));
         productMapper.updateEntity(dto, product);
         return productMapper.toDto(productRepository.save(product));
     }
@@ -58,7 +59,7 @@ public class ProductService implements IProductService {
     @Override
     public void deleteProduct(Long id) {
         if (!productRepository.existsById(id)) {
-            throw new ResourceNotFoundException("Product", id);
+            throw new ResourceNotFoundException(MESSAGE_ENTITY_NAME, id);
         }
         productRepository.deleteById(id);
     }

@@ -44,6 +44,9 @@ public class Control {
     @Column(name = "sucursal_id")
     private Long                 sucursalId;
 
+    @Column(name = "is_orderly", nullable = false, columnDefinition = "BOOLEAN DEFAULT FALSE")
+    private boolean isOrderly;
+
     @Column(name = "checked", nullable = false, columnDefinition = "BOOLEAN DEFAULT FALSE")
     private boolean checked;
 
