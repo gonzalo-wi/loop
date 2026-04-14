@@ -2,14 +2,10 @@ package com.eljumillano.loop.mapper;
 
 import java.math.BigDecimal;
 import java.util.stream.Collectors;
-
 import org.springframework.stereotype.Component;
-
 import com.eljumillano.loop.dtos.order.CreateOrderDto;
 import com.eljumillano.loop.dtos.order.OrderDto;
-import com.eljumillano.loop.dtos.order.OrderItemSummaryDto;
 import com.eljumillano.loop.model.Order;
-
 import lombok.RequiredArgsConstructor;
 
 @Component
