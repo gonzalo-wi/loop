@@ -1,4 +1,4 @@
-package com.eljumillano.loop.repository;
+package com.eljumillano.loop.repository.postgres;
 
 import java.util.List;
 import java.util.Optional;

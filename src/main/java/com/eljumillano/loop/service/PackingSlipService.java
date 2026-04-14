@@ -14,10 +14,10 @@ import com.eljumillano.loop.model.Order;
 import com.eljumillano.loop.model.PackingSlip;
 import com.eljumillano.loop.model.Sucursal;
 import com.eljumillano.loop.model.enums.PackingSlipStatus;
-import com.eljumillano.loop.repository.ControlRepository;
-import com.eljumillano.loop.repository.OrderRepository;
-import com.eljumillano.loop.repository.PackingSlipRepository;
-import com.eljumillano.loop.repository.SucursalRepository;
+import com.eljumillano.loop.repository.postgres.ControlRepository;
+import com.eljumillano.loop.repository.postgres.OrderRepository;
+import com.eljumillano.loop.repository.postgres.PackingSlipRepository;
+import com.eljumillano.loop.repository.postgres.SucursalRepository;
 import com.eljumillano.loop.service.iservice.IPackingSlipService;
 
 @Service

@@ -13,7 +13,7 @@ import com.eljumillano.loop.dtos.sucursal.UpdateSucursalDto;
 import com.eljumillano.loop.exception.ResourceNotFoundException;
 import com.eljumillano.loop.mapper.SucursalMapper;
 import com.eljumillano.loop.model.Sucursal;
-import com.eljumillano.loop.repository.SucursalRepository;
+import com.eljumillano.loop.repository.postgres.SucursalRepository;
 import com.eljumillano.loop.service.iservice.ISucursalService;
 
 @Service

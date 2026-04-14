@@ -12,9 +12,9 @@ import com.eljumillano.loop.mapper.OrderItemMapper;
 import com.eljumillano.loop.model.Disposable;
 import com.eljumillano.loop.model.Order;
 import com.eljumillano.loop.model.OrderItem;
-import com.eljumillano.loop.repository.DisposableRepository;
-import com.eljumillano.loop.repository.OrderItemRepository;
-import com.eljumillano.loop.repository.OrderRepository;
+import com.eljumillano.loop.repository.postgres.DisposableRepository;
+import com.eljumillano.loop.repository.postgres.OrderItemRepository;
+import com.eljumillano.loop.repository.postgres.OrderRepository;
 import com.eljumillano.loop.service.iservice.IOrderItem;
 
 import lombok.RequiredArgsConstructor;

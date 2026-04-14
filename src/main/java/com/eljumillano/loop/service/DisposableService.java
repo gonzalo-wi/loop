@@ -9,7 +9,7 @@ import com.eljumillano.loop.dtos.disposable.DisposableDto;
 import com.eljumillano.loop.exception.ResourceNotFoundException;
 import com.eljumillano.loop.mapper.DisposableMapper;
 import com.eljumillano.loop.model.Disposable;
-import com.eljumillano.loop.repository.DisposableRepository;
+import com.eljumillano.loop.repository.postgres.DisposableRepository;
 import com.eljumillano.loop.service.iservice.IDisposableService;
 
 import lombok.RequiredArgsConstructor;

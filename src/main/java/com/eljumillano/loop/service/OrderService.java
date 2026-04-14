@@ -18,10 +18,10 @@ import com.eljumillano.loop.model.OrderItem;
 import com.eljumillano.loop.model.Sucursal;
 import com.eljumillano.loop.model.User;
 import com.eljumillano.loop.model.enums.OrderState;
-import com.eljumillano.loop.repository.DisposableRepository;
-import com.eljumillano.loop.repository.OrderRepository;
-import com.eljumillano.loop.repository.SucursalRepository;
-import com.eljumillano.loop.repository.UserRepository;
+import com.eljumillano.loop.repository.postgres.DisposableRepository;
+import com.eljumillano.loop.repository.postgres.OrderRepository;
+import com.eljumillano.loop.repository.postgres.SucursalRepository;
+import com.eljumillano.loop.repository.postgres.UserRepository;
 import com.eljumillano.loop.service.iservice.IOrderService;
 
 import lombok.RequiredArgsConstructor;

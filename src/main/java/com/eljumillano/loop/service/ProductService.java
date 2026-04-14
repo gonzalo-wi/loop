@@ -7,7 +7,7 @@ import com.eljumillano.loop.dtos.product.ProductDto;
 import com.eljumillano.loop.exception.ResourceNotFoundException;
 import com.eljumillano.loop.mapper.ProductMapper;
 import com.eljumillano.loop.model.Product;
-import com.eljumillano.loop.repository.ProductRepository;
+import com.eljumillano.loop.repository.postgres.ProductRepository;
 import com.eljumillano.loop.service.iservice.IProductService;
 
 @Service

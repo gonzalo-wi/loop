@@ -11,9 +11,9 @@ import com.eljumillano.loop.exception.ResourceNotFoundException;
 import com.eljumillano.loop.mapper.ControlMapper;
 import com.eljumillano.loop.model.Control;
 import com.eljumillano.loop.model.enums.TypeControl;
+import com.eljumillano.loop.repository.postgres.ControlRepository;
+import com.eljumillano.loop.repository.postgres.ProductRepository;
 import com.eljumillano.loop.model.Product;
-import com.eljumillano.loop.repository.ControlRepository;
-import com.eljumillano.loop.repository.ProductRepository;
 import com.eljumillano.loop.service.iservice.IControlService;
 import com.eljumillano.loop.service.iservice.IPackingSlipService;
 
