@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.eljumillano.loop.dtos.control.ControlDto;
+import com.eljumillano.loop.dtos.control.DeliveryDateDto;
 import com.eljumillano.loop.service.iservice.IControlService;
 import org.springframework.web.bind.annotation.RequestBody;
 import jakarta.validation.Valid;
@@ -49,5 +50,19 @@ public class ControlController {
     public ResponseEntity<Void> deleteControl(@PathVariable Long id) {
         controlService.deleteControl(id);
         return ResponseEntity.noContent().build();
+    }
+
+
+    @PostMapping("/delivery-date")
+    public ResponseEntity<DeliveryDateDto> setGlobalDeliveryDate(@Valid @RequestBody DeliveryDateDto deliveryDateDto) {
+        controlService.setGlobalDeliveryDate(deliveryDateDto.getDeliveryDate());
+        return ResponseEntity.ok(deliveryDateDto);
+    }
+
+
+    @GetMapping("/delivery-date")
+    public ResponseEntity<DeliveryDateDto> getGlobalDeliveryDate() {
+        DeliveryDateDto dto = new DeliveryDateDto(controlService.getGlobalDeliveryDate());
+        return ResponseEntity.ok(dto);
     }
 }

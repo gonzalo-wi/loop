@@ -27,11 +27,10 @@ public class OrderItemService implements IOrderItem {
     private static final String MESSAGE_ENTITY_NAME            = "OrderItem";
     private static final String MESSAGE_ORDER_ENTITY_NAME      = "Order";
     private static final String MESSAGE_DISPOSABLE_ENTITY_NAME = "Disposable";
-
-    private final OrderItemRepository orderItemRepository;
-    private final OrderItemMapper orderItemMapper;
+    private final OrderItemRepository  orderItemRepository;
+    private final OrderItemMapper      orderItemMapper;
     private final DisposableRepository disposableRepository;
-    private final OrderRepository orderRepository;
+    private final OrderRepository      orderRepository;
 
     
     @Override

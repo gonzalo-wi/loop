@@ -1,4 +1,5 @@
 package com.eljumillano.loop.dtos.control;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 import com.eljumillano.loop.model.enums.TypeControl;
@@ -27,6 +28,8 @@ public class ControlDto {
 
     @NotNull(message = "El tipo de control es obligatorio")
     private TypeControl typeControl;
+
+    private LocalDate deliveryDate;
 
     private Boolean orderly;
     private Boolean checked;

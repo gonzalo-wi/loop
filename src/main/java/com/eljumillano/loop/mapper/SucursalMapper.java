@@ -18,6 +18,7 @@ public class SucursalMapper {
         dto.setLocalidad(sucursal.getLocalidad());
         dto.setProvincia(sucursal.getProvincia());
         dto.setCuit(sucursal.getCuit());
+        dto.setPackingSlipCode(sucursal.getPackingSlipCode());
         dto.setTotalUsers(sucursal.getUsers() != null ? sucursal.getUsers().size() : 0);
         dto.setCreatedAt(sucursal.getCreatedAt());
         dto.setUpdatedAt(sucursal.getUpdatedAt());
@@ -32,6 +33,7 @@ public class SucursalMapper {
         sucursal.setLocalidad(dto.getLocalidad());
         sucursal.setProvincia(dto.getProvincia());
         sucursal.setCuit(dto.getCuit());
+        sucursal.setPackingSlipCode(dto.getPackingSlipCode());
         return sucursal;
     }
 
@@ -53,6 +55,9 @@ public class SucursalMapper {
         }
         if (dto.getCuit() != null) {
             sucursal.setCuit(dto.getCuit());
+        }
+        if (dto.getPackingSlipCode() != null) {
+            sucursal.setPackingSlipCode(dto.getPackingSlipCode());
         }
     }
 }

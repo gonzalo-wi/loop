@@ -19,10 +19,9 @@ import lombok.RequiredArgsConstructor;
 @Transactional(readOnly = true)
 public class DisposableService implements IDisposableService {
 
-    private static final String MESSAGE_ENTITY_NAME = "Disposable";
-
+    private static final String        MESSAGE_ENTITY_NAME = "Disposable";
     private final DisposableRepository disposableRepository;
-    private final DisposableMapper disposableMapper;
+    private final DisposableMapper     disposableMapper;
 
 
     @Override
@@ -53,7 +52,7 @@ public class DisposableService implements IDisposableService {
     @Override
     @Transactional
     public DisposableDto update(Long id, DisposableDto disposableDto) {
-        Disposable disposable = disposableRepository.findById(id)
+        var disposable = disposableRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException(MESSAGE_ENTITY_NAME, id));
         disposableMapper.updateEntity(disposableDto, disposable);
         return disposableMapper.toDto(disposableRepository.save(disposable));

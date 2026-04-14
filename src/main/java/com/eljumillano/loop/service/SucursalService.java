@@ -19,6 +19,11 @@ import com.eljumillano.loop.service.iservice.ISucursalService;
 @Service
 public class SucursalService implements ISucursalService {
 
+    private static final String SUCURSAL_DUPLICADA            = "Ya existe una sucursal con el código: ";
+    private static final String SUCURSAL_NO_ENCONTRADA_ID     = "Sucursal no encontrada con id: ";
+    private static final String SUCURSAL_NO_ENCONTRADA_CODIGO = "Sucursal no encontrada con código: ";
+    private static final String SUCURSAL_CON_USUARIOS         = "No se puede eliminar la sucursal porque tiene %d usuarios asignados";
+    
     @Autowired
     private SucursalRepository sucursalRepository;
 
@@ -29,21 +34,22 @@ public class SucursalService implements ISucursalService {
     @Transactional
     public SucursalDto createSucursal(CreateSucursalDto createSucursalDto) {
         if (sucursalRepository.findByCode(createSucursalDto.getCode()).isPresent()) {
-            throw new IllegalArgumentException("Ya existe una sucursal con el código: " + createSucursalDto.getCode());
+            throw new IllegalArgumentException(SUCURSAL_DUPLICADA + createSucursalDto.getCode());
         }
-
-        Sucursal sucursal = sucursalMapper.toEntity(createSucursalDto);
-        Sucursal savedSucursal = sucursalRepository.save(sucursal);
+        var sucursal      = sucursalMapper.toEntity(createSucursalDto);
+        var savedSucursal = sucursalRepository.save(sucursal);
         return sucursalMapper.toDto(savedSucursal);
     }
+
 
     @Override
     @Transactional(readOnly = true)
     public SucursalDto getSucursalById(Long id) {
         Sucursal sucursal = sucursalRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Sucursal no encontrada con id: " + id));
+                .orElseThrow(() -> new ResourceNotFoundException(SUCURSAL_NO_ENCONTRADA_ID + id));
         return sucursalMapper.toDto(sucursal);
     }
+
 
     @Override
     @Transactional(readOnly = true)
@@ -53,13 +59,15 @@ public class SucursalService implements ISucursalService {
                 .collect(Collectors.toList());
     }
 
+
     @Override
     @Transactional(readOnly = true)
     public SucursalDto getSucursalByCode(String code) {
         Sucursal sucursal = sucursalRepository.findByCode(code)
-                .orElseThrow(() -> new ResourceNotFoundException("Sucursal no encontrada con código: " + code));
+                .orElseThrow(() -> new ResourceNotFoundException(SUCURSAL_NO_ENCONTRADA_CODIGO + code));
         return sucursalMapper.toDto(sucursal);
     }
+
 
     @Override
     @Transactional(readOnly = true)
@@ -69,6 +77,7 @@ public class SucursalService implements ISucursalService {
                 .collect(Collectors.toList());
     }
 
+
     @Override
     @Transactional(readOnly = true)
     public List<SucursalDto> getSucursalesByProvincia(String provincia) {
@@ -77,36 +86,34 @@ public class SucursalService implements ISucursalService {
                 .collect(Collectors.toList());
     }
 
+
     @Override
     @Transactional
     public SucursalDto updateSucursal(Long id, UpdateSucursalDto updateSucursalDto) {
-        Sucursal sucursal = sucursalRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Sucursal no encontrada con id: " + id));
-
+        var sucursal = sucursalRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException(SUCURSAL_NO_ENCONTRADA_ID + id));
         if (updateSucursalDto.getCode() != null && !updateSucursalDto.getCode().equals(sucursal.getCode())) {
             if (sucursalRepository.findByCode(updateSucursalDto.getCode()).isPresent()) {
-                throw new IllegalArgumentException("Ya existe una sucursal con el código: " + updateSucursalDto.getCode());
+                throw new IllegalArgumentException(SUCURSAL_DUPLICADA + updateSucursalDto.getCode());
             }
         }
-
         sucursalMapper.updateEntity(sucursal, updateSucursalDto);
-        Sucursal updatedSucursal = sucursalRepository.save(sucursal);
+        var updatedSucursal = sucursalRepository.save(sucursal);
         return sucursalMapper.toDto(updatedSucursal);
     }
+
 
     @Override
     @Transactional
     public void deleteSucursal(Long id) {
         Sucursal sucursal = sucursalRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Sucursal no encontrada con id: " + id));
-        
+                .orElseThrow(() -> new ResourceNotFoundException(SUCURSAL_NO_ENCONTRADA_ID + id));
         if (sucursal.getUsers() != null && !sucursal.getUsers().isEmpty()) {
-            throw new IllegalStateException("No se puede eliminar la sucursal porque tiene " + 
-                    sucursal.getUsers().size() + " usuarios asignados");
+            throw new IllegalStateException(String.format(SUCURSAL_CON_USUARIOS, sucursal.getUsers().size()));
         }
-        
         sucursalRepository.delete(sucursal);
     }
+
 
     @Override
     @Transactional(readOnly = true)

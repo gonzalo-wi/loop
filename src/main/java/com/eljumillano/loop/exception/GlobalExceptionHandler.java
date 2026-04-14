@@ -32,27 +32,32 @@ public class GlobalExceptionHandler {
         body.put("errors", errors);
         return ResponseEntity.badRequest().body(body);
     }
+    
 
     @ExceptionHandler(DataIntegrityViolationException.class)
     public ResponseEntity<Map<String, Object>> handleDataIntegrity(DataIntegrityViolationException ex) {
         return buildResponse(HttpStatus.BAD_REQUEST, "Referencia inválida: algún ID no existe en la base de datos");
     }
 
+
     @ExceptionHandler(IllegalArgumentException.class)
     public ResponseEntity<Map<String, Object>> handleIllegalArgument(IllegalArgumentException ex) {
         return buildResponse(HttpStatus.BAD_REQUEST, ex.getMessage());
     }
+
 
     @ExceptionHandler(IllegalStateException.class)
     public ResponseEntity<Map<String, Object>> handleIllegalState(IllegalStateException ex) {
         return buildResponse(HttpStatus.CONFLICT, ex.getMessage());
     }
 
+
     @ExceptionHandler(Exception.class)
     public ResponseEntity<Map<String, Object>> handleGeneric(Exception ex) {
         String message = ex.getCause() != null ? ex.getCause().getMessage() : ex.getMessage();
         return buildResponse(HttpStatus.INTERNAL_SERVER_ERROR, message);
     }
+
 
     private ResponseEntity<Map<String, Object>> buildResponse(HttpStatus status, String message) {
         Map<String, Object> body = new HashMap<>();

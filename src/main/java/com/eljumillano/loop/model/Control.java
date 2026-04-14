@@ -1,5 +1,6 @@
 package com.eljumillano.loop.model;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -53,6 +54,9 @@ public class Control {
     @Enumerated(EnumType.STRING)
     @Column(name = "type_control", nullable = false)
     private TypeControl          typeControl;
+
+    @Column(name = "delivery_date")
+    private LocalDate            deliveryDate;
 
     @Column(name = "created_at", updatable = false)
     private LocalDateTime        createdAt;

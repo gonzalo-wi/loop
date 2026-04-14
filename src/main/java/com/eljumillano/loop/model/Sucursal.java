@@ -44,6 +44,9 @@ public class Sucursal {
     @Column(name = "cuit", nullable = true)
     private String cuit;
 
+    @Column(name = "packing_slip_code", nullable = true)
+    private String packingSlipCode;
+
     @OneToMany(mappedBy = "sucursal")
     private List<User> users;
 

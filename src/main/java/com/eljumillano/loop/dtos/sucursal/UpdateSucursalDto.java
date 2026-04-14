@@ -16,4 +16,5 @@ public class UpdateSucursalDto {
     private String localidad;
     private String provincia;
     private String cuit;
+    private String packingSlipCode;
 }

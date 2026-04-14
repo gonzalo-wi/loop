@@ -21,6 +21,7 @@ public class ControlMapper {
         dto.setSupervisorId(control.getSupervisorId());
         dto.setSucursalId(control.getSucursalId());
         dto.setTypeControl(control.getTypeControl());
+        dto.setDeliveryDate(control.getDeliveryDate());
         dto.setChecked(control.isChecked());
         dto.setOrderly(control.isOrderly());
         dto.setCreatedAt(control.getCreatedAt());
@@ -43,6 +44,7 @@ public class ControlMapper {
         control.setSupervisorId(dto.getSupervisorId());
         control.setSucursalId(dto.getSucursalId());
         control.setTypeControl(dto.getTypeControl());
+        control.setDeliveryDate(dto.getDeliveryDate());
         control.setChecked(dto.getChecked() != null ? dto.getChecked() : false);
         control.setOrderly(dto.getOrderly() != null ? dto.getOrderly() : false);
         if (dto.getProducts() != null && productsMap != null) {
@@ -63,6 +65,7 @@ public class ControlMapper {
         control.setSupervisorId(dto.getSupervisorId());
         control.setSucursalId(dto.getSucursalId());
         control.setTypeControl(dto.getTypeControl());
+        control.setDeliveryDate(dto.getDeliveryDate());
         control.setChecked(dto.getChecked() != null ? dto.getChecked() : false);
         control.setOrderly(dto.getOrderly() != null ? dto.getOrderly() : false);
         if (dto.getProducts() != null && productsMap != null) {
